@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИИ в Люберецком техникуме: От обучения к практике</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2a5bd7;
+            --primary-dark: #1a47b5;
+            --secondary: #ff6b35;
+            --accent: #00c9a7;
+            --light: #f8f9fa;
+            --dark: #1e2a47;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .logo-text .subtitle {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: normal;
+            display: block;
+            margin-top: 3px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a.active {
+            color: var(--primary);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -5px;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(135deg, rgba(42, 91, 215, 0.1) 0%, rgba(0, 201, 167, 0.1) 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .hero-date {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        /* Секция курсов */
+        .courses-section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-img {
+            height: 200px;
+            width: 100%;
+            background-color: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .course-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .course-provider {
+            display: inline-block;
+            background-color: var(--light-gray);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .course-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .course-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Сертификаты */
+        .certificate-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .certificate-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .certificate-image {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light-gray);
+            height: 300px;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .certificate-upload {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .upload-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        #certificateUpload {
+            display: none;
+        }
+
+        .certificate-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .certificate-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .skill-item {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Документы */
+        .documents-section {
+            padding: 100px 0;
+            background-color: #f5f7ff;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .document-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .document-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .document-card p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .document-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .document-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Вебинары и материалы */
+        .webinars-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .webinars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .webinar-card {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .webinar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .webinar-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .webinar-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .webinar-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .webinar-btn:hover {
+            background-color: #00b594;
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-about p {
+            color: #b0b7c3;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after, .footer-contact h4::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #b0b7c3;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            color: #b0b7c3;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2a3a5a;
+            color: #b0b7c3;
+            font-size: 14px;
+        }
+        /* Места практики студентов */
+.practice-section {
+    padding: 100px 0;
+    background-color: white;
+}
+
+.practice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.practice-card {
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid var(--light-gray);
+}
+
+.practice-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+.practice-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(42, 91, 215, 0.1) 0%, rgba(0, 201, 167, 0.1) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--primary);
+    font-size: 32px;
+}
+
+.practice-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.practice-subtitle {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.practice-description {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Адаптивность для мест практики */
+@media (max-width: 768px) {
+    .practice-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .practice-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .courses-grid, .documents-grid, .webinars-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .certificate-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .courses-section, .certificate-section, .documents-section, .webinars-section {
+                padding: 70px 0;
+            }
+            
+            .courses-grid, .documents-grid, .webinars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        ИИ в Люберецком техникуме
+                        <span class="subtitle">От обучения к практике</span>
+                    </div>
+                </a>
+                
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#" class="active">Главная</a></li>
+                    <li><a href="#courses">Курсы</a></li>
+                    <li><a href="#certificate">Сертификат</a></li>
+                    <li><a href="#documents">Документы</a></li>
+                    <li><a href="#webinars">Материалы</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главная секция -->
+    <section class="hero">
+        <div class="container">
+            <h1>ИИ в Люберецком техникуме: От обучения к практике</h1>
+            <div class="hero-date">Осень 2025: Результаты внедрения искусственного интеллекта в учебный процесс</div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">студентов обучено</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">практических курса</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">партнерских предприятий</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Курсы -->
+    <section class="courses-section" id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Практические курсы по искусственному интеллекту</h2>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-img">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4a6fa5, #6cbf84); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">Python + ИИ</div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Разработчик ИИ-чат-ботов на Python</h3>
+                        <p class="course-description">От основ до создания виртуальных ассистентов. Практический курс по разработке интеллектуальных чат-ботов с использованием современных технологий искусственного интеллекта.</p>
+                        <div class="course-provider">Госуслуги</div>
+                        <a href="#" class="course-btn">Перейти к курсу</a>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-img">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ff7e5f, #feb47b); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">Визуальный ИИ</div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Наглядные основы искусственного интеллекта</h3>
+                        <p class="course-description">Визуальное изучение принципов работы ИИ. Курс помогает понять сложные концепции искусственного интеллекта через интерактивные визуализации и практические примеры.</p>
+                        <div class="course-provider">Госуслуги</div>
+                        <a href="#" class="course-btn">Перейти к курсу</a>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-img">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6a11cb, #2575fc); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">Нейросети</div>
+                    </div>
+                    <div class="course-content">
+                        <h3>НейроСтарт - программирование и ИИ на Python</h3>
+                        <p class="course-description">Основы нейросетей и машинного обучения. Идеальный старт для тех, кто хочет освоить программирование нейронных сетей и применить машинное обучение в реальных проектах.</p>
+                        <div class="course-provider">Госуслуги</div>
+                        <a href="#" class="course-btn">Перейти к курсу</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Сертификаты -->
+    <section class="certificate-section" id="certificate">
+        <div class="container">
+            <div class="section-title">
+                <h2>Сертификат проекта</h2>
+            </div>
+            
+            <div class="certificate-container">
+                <div class="certificate-image">
+                    <div class="certificate-upload">
+
+                        <input type="file" id="certificateUpload" accept="image/*">
+                        <img src="https://github.com/AntonioSniper/saits/blob/main/photo_2026-01-08_15-08-20.jpg?raw=true" alt="Сертификат Школа программистов" class="certificate-img">
+                    </div>
+                </div>
+                <div class="certificate-content">
+                    <h3>В рамках проекта студенты прошли курсы от ведущих IT-компаний</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">Наглядные основы ИИ</div>
+                        <div class="skill-item">Новые медиа: SMM</div>
+                        <div class="skill-item">Генеративное искусство</div>
+                        <div class="skill-item">Основы программирования</div>
+                        <div class="skill-item">Введение в ИИ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Документы -->
+    <section class="documents-section" id="documents">
+        <div class="container">
+            <div class="section-title">
+                <h2>Документы и планы</h2>
+                <p>Организационные материалы для развития проекта</p>
+            </div>
+            
+            <div class="documents-grid">
+                <div class="document-card">
+                    <h3>План развития проекта</h3>
+                    <p>Дорожная карта внедрения ИИ на 2026 год. Подробное описание этапов развития проекта, ключевые milestones и ожидаемые результаты.</p>
+                    <a href="#" class="document-btn">Открыть документ</a>
+                </div>
+                
+                <div class="document-card">
+                    <h3>Учебные материалы</h3>
+                    <p>Конспекты, методички и практические задания. Полный комплект учебных материалов для студентов и преподавателей.</p>
+                    <a href="#" class="document-btn">Открыть документ</a>
+                </div>
+                
+                <div class="document-card">
+                    <h3>Инструменты и технологии</h3>
+                    <p>Список ПО и оборудования для обучения. Рекомендации по выбору инструментов для разработки ИИ-проектов.</p>
+                    <a href="#" class="document-btn">Открыть документ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Места практики студентов -->
+<section class="practice-section" id="practice">
+    <div class="container">
+        <div class="section-title">
+            <h2>Места практики студентов</h2>
+            <p>Организации, где студенты проходят производственную практику и применяют знания на реальных проектах</p>
+        </div>
+        
+        <div class="practice-grid">
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-helicopter"></i>
+                </div>
+                <h3>Национальный центр вертолётостроения</h3>
+                <p class="practice-subtitle">им. М. Л. Миля и Н. И. Камова (г. Люберцы)</p>
+                <p class="practice-description">Работа с ПК и IT-системами, поддержка технологических процессов, участие в цифровизации производства.</p>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h3>ЗАО "Научно-производственный центр"</h3>
+                <p class="practice-subtitle">Информационные региональные системы (г. Москва)</p>
+                <p class="practice-description">IT-разработка и поддержка, работа с базами данных, создание и обслуживание информационных систем.</p>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3>Государственные учреждения</h3>
+                <p class="practice-subtitle">Миграционная служба и Мировые судьи</p>
+                <p class="practice-description">Работа с документами и базами данных, цифровизация процессов, техническая поддержка информационных систем.</p>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Культурные учреждения</h3>
+                <p class="practice-subtitle">Библиотека г. Дзержинский</p>
+                <p class="practice-description">Проведение мероприятий и IT-поддержка, создание и ведение цифровых архивов, помощь в цифровой трансформации.</p>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Места практики студентов -->
+<section class="practice-section" id="practice">
+    <div class="container">
+        <div class="section-title">
+            <h2>Места практики студентов</h2>
+            <p>Организации, где студенты проходят производственную практику и применяют знания на реальных проектах</p>
+        </div>
+        
+        <div class="practice-grid">
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-helicopter"></i>
+                </div>
+                <h3>Национальный центр вертолётостроения</h3>
+                <p class="practice-subtitle">им. М. Л. Миля и Н. И. Камова (г. Люберцы)</p>
+                <p class="practice-description">Работа с ПК и IT-системами, поддержка технологических процессов, участие в цифровизации производства.</p>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h3>ЗАО "Научно-производственный центр"</h3>
+                <p class="practice-subtitle">Информационные региональные системы (г. Москва)</p>
+                <p class="practice-description">IT-разработка и поддержка, работа с базами данных, создание и обслуживание информационных систем.</p>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3>Государственные учреждения</h3>
+                <p class="practice-subtitle">Миграционная служба и Мировые судьи</p>
+                <p class="practice-description">Работа с документами и базами данных, цифровизация процессов, техническая поддержка информационных систем.</p>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Культурные учреждения</h3>
+                <p class="practice-subtitle">Библиотека г. Дзержинский</p>
+                <p class="practice-description">Проведение мероприятий и IT-поддержка, создание и ведение цифровых архивов, помощь в цифровой трансформации.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Вебинары и материалы -->
+    <section class="webinars-section" id="webinars">
+        <div class="container">
+            <div class="section-title">
+                <h2>Полезные материалы</h2>
+                <p>Видеозаписи вебинаров, методические материалы для обучения</p>
+            </div>
+            
+            <div class="webinars-grid">
+                <div class="webinar-card">
+                    <div class="webinar-date">17.12.2025</div>
+                    <h4>Подведение итогов работы "Цифровой мастерской преподавателя СПО"</h4>
+                    <a href="#" class="webinar-btn">Смотреть запись</a>
+                </div>
+                
+                <div class="webinar-card">
+                    <div class="webinar-date">03.12.2025</div>
+                    <h4>Возможности федерального мессенджера MAX в образовании</h4>
+                    <a href="#" class="webinar-btn">Смотреть запись</a>
+                </div>
+                
+                <div class="webinar-card">
+                    <div class="webinar-date">19.11.2025</div>
+                    <h4>Создание инфографики и презентаций с помощью ИИ</h4>
+                    <a href="#" class="webinar-btn">Смотреть запись</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Люберецкий техникум</div>
+                    <p>Инновационная образовательная площадка, специализирующаяся на внедрении искусственного интеллекта и цифровых технологий в учебный процесс. Подготовка специалистов для экономики будущего.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#courses">Курсы</a></li>
+                        <li><a href="#certificate">Сертификат</a></li>
+                        <li><a href="#documents">Документы</a></li>
+                        <li><a href="#webinars">Материалы</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Люберцы, ул. Техникумовская, 15</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@lyubertsy-tech.ru</p>
+                    <p><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 18:00</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Люберецкий техникум. ИИ в образовании: От обучения к практике. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.addEventListener("DOMContentLoaded", function() {
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const navMenu = document.getElementById("navMenu");
+            
+            mobileMenuBtn.addEventListener("click", function() {
+                navMenu.classList.toggle("active");
+                mobileMenuBtn.innerHTML = navMenu.classList.contains("active") 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Закрытие меню при клике на ссылку
+            const navLinks = document.querySelectorAll(".nav-menu a");
+            navLinks.forEach(link => {
+                link.addEventListener("click", function() {
+                    navMenu.classList.remove("active");
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Загрузка изображения сертификата
+            const certificateUpload = document.getElementById('certificateUpload');
+            const certificateImage = document.getElementById('certificateImage');
+            
+            certificateUpload.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        certificateImage.src = e.target.result;
+                        certificateImage.style.display = 'block';
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Плавная прокрутка для якорных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Подсветка активного пункта меню при прокрутке
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-menu a');
+                
+                let currentSectionId = '';
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSectionId = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
