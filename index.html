@@ -62,20 +62,39 @@
             text-decoration: none;
             color: var(--dark);
         }
-
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    overflow: hidden;
+    position: relative;
+    background: none;
+    border-radius: 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-icon:hover img {
+    transform: scale(1.1) rotate(0deg);
+    filter: drop-shadow(0 4px 8px rgba(42, 91, 215, 0.3));
+}
+
+/* Анимация парения */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
 
         .logo-text {
             font-size: 22px;
@@ -239,7 +258,14 @@
         .course-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: white;
+            padding: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .course-card:hover .course-img img {
+            transform: scale(1.05);
         }
 
         .course-content {
@@ -477,6 +503,66 @@
             background-color: #00b594;
         }
 
+        /* Места практики студентов */
+        .practice-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .practice-card {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .practice-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .practice-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(42, 91, 215, 0.1) 0%, rgba(0, 201, 167, 0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 32px;
+        }
+
+        .practice-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .practice-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .practice-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         /* Футер */
         footer {
             background-color: var(--dark);
@@ -562,78 +648,6 @@
             color: #b0b7c3;
             font-size: 14px;
         }
-        /* Места практики студентов */
-.practice-section {
-    padding: 100px 0;
-    background-color: white;
-}
-
-.practice-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.practice-card {
-    background-color: #f8f9fa;
-    border-radius: var(--border-radius);
-    padding: 30px;
-    text-align: center;
-    transition: var(--transition);
-    border: 1px solid var(--light-gray);
-}
-
-.practice-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary);
-}
-
-.practice-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, rgba(42, 91, 215, 0.1) 0%, rgba(0, 201, 167, 0.1) 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    color: var(--primary);
-    font-size: 32px;
-}
-
-.practice-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    color: var(--dark);
-}
-
-.practice-subtitle {
-    color: var(--primary);
-    font-weight: 600;
-    margin-bottom: 15px;
-    font-size: 0.95rem;
-}
-
-.practice-description {
-    color: var(--gray);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* Адаптивность для мест практики */
-@media (max-width: 768px) {
-    .practice-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    }
-}
-
-@media (max-width: 576px) {
-    .practice-grid {
-        grid-template-columns: 1fr;
-    }
-}
 
         /* Адаптивность */
         @media (max-width: 992px) {
@@ -643,6 +657,10 @@
             
             .courses-grid, .documents-grid, .webinars-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .practice-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
         }
 
@@ -694,11 +712,11 @@
                 padding: 60px 0;
             }
             
-            .courses-section, .certificate-section, .documents-section, .webinars-section {
+            .courses-section, .certificate-section, .documents-section, .webinars-section, .practice-section {
                 padding: 70px 0;
             }
             
-            .courses-grid, .documents-grid, .webinars-grid {
+            .courses-grid, .documents-grid, .webinars-grid, .practice-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -711,7 +729,7 @@
             <div class="header-content">
                 <a href="#" class="logo">
                     <div class="logo-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                        <img src="https://github.com/lobanovanas208-del/FDFFSFD/blob/main/logo.png?raw=true" alt="Логотип Люберецкого техникума">
                     </div>
                     <div class="logo-text">
                         ИИ в Люберецком техникуме
@@ -727,6 +745,7 @@
                     <li><a href="#" class="active">Главная</a></li>
                     <li><a href="#courses">Курсы</a></li>
                     <li><a href="#certificate">Сертификат</a></li>
+                    <li><a href="#practice">Практика</a></li>
                     <li><a href="#documents">Документы</a></li>
                     <li><a href="#webinars">Материалы</a></li>
                 </ul>
@@ -767,31 +786,31 @@
             <div class="courses-grid">
                 <div class="course-card">
                     <div class="course-img">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4a6fa5, #6cbf84); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">Python + ИИ</div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/VK.com-logo.svg/320px-VK.com-logo.svg.png" alt="Разработка ИИ-чат-ботов на Python">
                     </div>
                     <div class="course-content">
                         <h3>Разработчик ИИ-чат-ботов на Python</h3>
                         <p class="course-description">От основ до создания виртуальных ассистентов. Практический курс по разработке интеллектуальных чат-ботов с использованием современных технологий искусственного интеллекта.</p>
-                        <div class="course-provider">Госуслуги</div>
+                        <div class="course-provider">Vk Education</div>
                         <a href="#" class="course-btn">Перейти к курсу</a>
                     </div>
                 </div>
                 
                 <div class="course-card">
                     <div class="course-img">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ff7e5f, #feb47b); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">Визуальный ИИ</div>
+                        <img src="https://github.com/Kusmanito/ppphoto/blob/main/ya.png?raw=true" alt="Наглядные основы искусственного интеллекта">
                     </div>
                     <div class="course-content">
                         <h3>Наглядные основы искусственного интеллекта</h3>
                         <p class="course-description">Визуальное изучение принципов работы ИИ. Курс помогает понять сложные концепции искусственного интеллекта через интерактивные визуализации и практические примеры.</p>
-                        <div class="course-provider">Госуслуги</div>
+                        <div class="course-provider">Яндекс</div>
                         <a href="#" class="course-btn">Перейти к курсу</a>
                     </div>
                 </div>
                 
                 <div class="course-card">
                     <div class="course-img">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6a11cb, #2575fc); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">Нейросети</div>
+                        <img src="https://github.com/Kusmanito/ppphoto/blob/main/1fab7f3450079873596232f82f6e77b0.jpg?raw=true" alt="НейроСтарт - программирование и ИИ на Python">
                     </div>
                     <div class="course-content">
                         <h3>НейроСтарт - программирование и ИИ на Python</h3>
@@ -813,10 +832,9 @@
             
             <div class="certificate-container">
                 <div class="certificate-image">
+                    <img src="https://github.com/AntonioSniper/saits/blob/main/photo_2026-01-08_15-08-20.jpg?raw=true" alt="Сертификат Школа программистов" class="certificate-img">
                     <div class="certificate-upload">
-
                         <input type="file" id="certificateUpload" accept="image/*">
-                        <img src="https://github.com/AntonioSniper/saits/blob/main/photo_2026-01-08_15-08-20.jpg?raw=true" alt="Сертификат Школа программистов" class="certificate-img">
                     </div>
                 </div>
                 <div class="certificate-content">
@@ -828,6 +846,54 @@
                         <div class="skill-item">Основы программирования</div>
                         <div class="skill-item">Введение в ИИ</div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Места практики студентов -->
+    <section class="practice-section" id="practice">
+        <div class="container">
+            <div class="section-title">
+                <h2>Места практики студентов</h2>
+                <p>Организации, где студенты проходят производственную практику и применяют знания на реальных проектах</p>
+            </div>
+            
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">
+                        <i class="fas fa-helicopter"></i>
+                    </div>
+                    <h3>Национальный центр вертолётостроения</h3>
+                    <p class="practice-subtitle">им. М. Л. Миля и Н. И. Камова (г. Люберцы)</p>
+                    <p class="practice-description">Работа с ПК и IT-системами, поддержка технологических процессов, участие в цифровизации производства.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>ЗАО "Научно-производственный центр"</h3>
+                    <p class="practice-subtitle">Информационные региональные системы (г. Москва)</p>
+                    <p class="practice-description">IT-разработка и поддержка, работа с базами данных, создание и обслуживание информационных систем.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>Государственные учреждения</h3>
+                    <p class="practice-subtitle">Миграционная служба и Мировые судьи</p>
+                    <p class="practice-description">Работа с документами и базами данных, цифровизация процессов, техническая поддержка информационных систем.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Культурные учреждения</h3>
+                    <p class="practice-subtitle">Библиотека г. Дзержинский</p>
+                    <p class="practice-description">Проведение мероприятий и IT-поддержка, создание и ведение цифровых архивов, помощь в цифровой трансформации.</p>
                 </div>
             </div>
         </div>
@@ -862,53 +928,6 @@
             </div>
         </div>
     </section>
-    <!-- Места практики студентов -->
-<section class="practice-section" id="practice">
-    <div class="container">
-        <div class="section-title">
-            <h2>Места практики студентов</h2>
-            <p>Организации, где студенты проходят производственную практику и применяют знания на реальных проектах</p>
-        </div>
-        
-        <div class="practice-grid">
-            <div class="practice-card">
-                <div class="practice-icon">
-                    <i class="fas fa-helicopter"></i>
-                </div>
-                <h3>Национальный центр вертолётостроения</h3>
-                <p class="practice-subtitle">им. М. Л. Миля и Н. И. Камова (г. Люберцы)</p>
-                <p class="practice-description">Работа с ПК и IT-системами, поддержка технологических процессов, участие в цифровизации производства.</p>
-            </div>
-            
-            <div class="practice-card">
-                <div class="practice-icon">
-                    <i class="fas fa-industry"></i>
-                </div>
-                <h3>ЗАО "Научно-производственный центр"</h3>
-                <p class="practice-subtitle">Информационные региональные системы (г. Москва)</p>
-                <p class="practice-description">IT-разработка и поддержка, работа с базами данных, создание и обслуживание информационных систем.</p>
-            </div>
-            
-            <div class="practice-card">
-                <div class="practice-icon">
-                    <i class="fas fa-landmark"></i>
-                </div>
-                <h3>Государственные учреждения</h3>
-                <p class="practice-subtitle">Миграционная служба и Мировые судьи</p>
-                <p class="practice-description">Работа с документами и базами данных, цифровизация процессов, техническая поддержка информационных систем.</p>
-            </div>
-            
-            <div class="practice-card">
-                <div class="practice-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-                <h3>Культурные учреждения</h3>
-                <p class="practice-subtitle">Библиотека г. Дзержинский</p>
-                <p class="practice-description">Проведение мероприятий и IT-поддержка, создание и ведение цифровых архивов, помощь в цифровой трансформации.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
     <!-- Вебинары и материалы -->
     <section class="webinars-section" id="webinars">
@@ -955,6 +974,7 @@
                         <li><a href="#">Главная</a></li>
                         <li><a href="#courses">Курсы</a></li>
                         <li><a href="#certificate">Сертификат</a></li>
+                        <li><a href="#practice">Практика</a></li>
                         <li><a href="#documents">Документы</a></li>
                         <li><a href="#webinars">Материалы</a></li>
                     </ul>
@@ -999,19 +1019,14 @@
             
             // Загрузка изображения сертификата
             const certificateUpload = document.getElementById('certificateUpload');
-            const certificateImage = document.getElementById('certificateImage');
             
             certificateUpload.addEventListener('change', function(event) {
                 const file = event.target.files[0];
                 if (file) {
-                    const reader = new FileReader();
+                    alert('Изображение успешно загружено! Для просмотра загруженного сертификата используйте стандартный просмотрщик изображений на вашем устройстве.');
                     
-                    reader.onload = function(e) {
-                        certificateImage.src = e.target.result;
-                        certificateImage.style.display = 'block';
-                    };
-                    
-                    reader.readAsDataURL(file);
+                    // Сброс поля загрузки
+                    certificateUpload.value = '';
                 }
             });
             
@@ -1060,5 +1075,4 @@
         });
     </script>
 </body>
-
 </html>
