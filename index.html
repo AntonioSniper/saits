@@ -720,6 +720,26 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* Стили для изображений в карточках практики */
+.practice-image {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--light-gray);
+}
+
+.practice-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.practice-card:hover .practice-image img {
+    transform: scale(1.05);
+}
     </style>
 </head>
 <body>
@@ -852,52 +872,65 @@
     </section>
 
     <!-- Места практики студентов -->
-    <section class="practice-section" id="practice">
-        <div class="container">
-            <div class="section-title">
-                <h2>Места практики студентов</h2>
-                <p>Организации, где студенты проходят производственную практику и применяют знания на реальных проектах</p>
+    <!-- Места практики студентов -->
+<section class="practice-section" id="practice">
+    <div class="container">
+        <div class="section-title">
+            <h2>Места практики студентов</h2>
+            <p>Организации, где студенты проходят производственную практику и применяют знания на реальных проектах</p>
+        </div>
+        
+        <div class="practice-grid">
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-helicopter"></i>
+                </div>
+                <div class="practice-image">
+                    <img src="https://github.com/AntonioSniper/saits/blob/main/photo_2026-01-10_12-19-54.jpg?raw=true" alt="Национальный центр вертолётостроения им. М.Л. Миля и Н.И. Камова">
+                </div>
+                <h3>Национальный центр вертолётостроения</h3>
+                <p class="practice-subtitle">им. М. Л. Миля и Н. И. Камова (г. Люберцы)</p>
+                <p class="practice-description">Работа с ПК и IT-системами, поддержка технологических процессов, участие в цифровизации производства.</p>
             </div>
             
-            <div class="practice-grid">
-                <div class="practice-card">
-                    <div class="practice-icon">
-                        <i class="fas fa-helicopter"></i>
-                    </div>
-                    <h3>Национальный центр вертолётостроения</h3>
-                    <p class="practice-subtitle">им. М. Л. Миля и Н. И. Камова (г. Люберцы)</p>
-                    <p class="practice-description">Работа с ПК и IT-системами, поддержка технологических процессов, участие в цифровизации производства.</p>
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-industry"></i>
                 </div>
-                
-                <div class="practice-card">
-                    <div class="practice-icon">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <h3>ЗАО "Научно-производственный центр"</h3>
-                    <p class="practice-subtitle">Информационные региональные системы (г. Москва)</p>
-                    <p class="practice-description">IT-разработка и поддержка, работа с базами данных, создание и обслуживание информационных систем.</p>
+                <div class="practice-image">
+                    <img src="https://github.com/AntonioSniper/saits/blob/main/photo_2026-01-10_12-17-59.jpg?raw=true" alt="ЗАО Научно-производственный центр">
                 </div>
-                
-                <div class="practice-card">
-                    <div class="practice-icon">
-                        <i class="fas fa-landmark"></i>
-                    </div>
-                    <h3>Государственные учреждения</h3>
-                    <p class="practice-subtitle">Миграционная служба и Мировые судьи</p>
-                    <p class="practice-description">Работа с документами и базами данных, цифровизация процессов, техническая поддержка информационных систем.</p>
+                <h3>ЗАО "Научно-производственный центр"</h3>
+                <p class="practice-subtitle">Информационные региональные системы (г. Москва)</p>
+                <p class="practice-description">IT-разработка и поддержка, работа с базами данных, создание и обслуживание информационных систем.</p>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-landmark"></i>
                 </div>
-                
-                <div class="practice-card">
-                    <div class="practice-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Культурные учреждения</h3>
-                    <p class="practice-subtitle">Библиотека г. Дзержинский</p>
-                    <p class="practice-description">Проведение мероприятий и IT-поддержка, создание и ведение цифровых архивов, помощь в цифровой трансформации.</p>
+                <div class="practice-image">
+                    <img src="https://github.com/AntonioSniper/saits/blob/main/photo_2026-01-10_12-36-33.jpg?raw=true" alt="Государственные учреждения">
                 </div>
+                <h3>Государственные учреждения</h3>
+                <p class="practice-subtitle">Миграционная служба и Мировые судьи</p>
+                <p class="practice-description">Работа с документами и базами данных, цифровизация процессов, техническая поддержка информационных систем.</p>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="practice-image">
+                    <img src="https://github.com/AntonioSniper/saits/blob/main/photo_2026-01-10_12-36-37.jpg?raw=true" alt="Культурные учреждения">
+                </div>
+                <h3>Культурные учреждения</h3>
+                <p class="practice-subtitle">Библиотека г. Дзержинский</p>
+                <p class="practice-description">Проведение мероприятий и IT-поддержка, создание и ведение цифровых архивов, помощь в цифровой трансформации.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Документы -->
     <section class="documents-section" id="documents">
